@@ -1,0 +1,14 @@
+
+{% block content %}
+
+<h2>Sign up to Le Bistrot d'Andre to book tables, order food and receive exclusive rewards</h2>
+<div id="signIn">
+<form method="post">
+  {% csrf_token %}
+  {{ u_form.as_p }}
+  {{ p_form.as_p }}
+  
+  <input type="submit" name="" value="Sign Up">
+</form>
+</div>
+{% endblock %}
