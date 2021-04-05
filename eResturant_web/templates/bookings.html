@@ -1,1 +1,7 @@
-<h1>Hello there this is a test</h1>
+{% extends 'home.html' %}
+
+{% block content %}
+    <h1>Bookings</h1>
+    {{ request.user.is_authenticated }}
+
+{% endblock content %}

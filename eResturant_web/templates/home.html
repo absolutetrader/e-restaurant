@@ -1,0 +1,14 @@
+<!doctype html>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'app/site.css' %}" />
+<html>
+    <head>
+        <title>Le Bistrot d'Andre</title>
+    </head>
+    <body>
+        {% block content %}
+        Hello! Welcome to the home page.
+
+        {% endblock %}
+    </body>
+</html>
