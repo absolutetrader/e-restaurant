@@ -11,7 +11,7 @@ def home(request):
 def hello_there(request, name):
     return render(
         request,
-        'app/hello_there.html',
+        'hello_there.html',
         {
             'name': name,
             'date': datetime.now()
