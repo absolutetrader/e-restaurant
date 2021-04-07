@@ -3,6 +3,9 @@ from django.http import HttpResponse
 
 # Create your views here.
 def bookings_view(request, *args, **kwargs):
-    print(request.user)
-    #return HttpResponse("<h1>I'm meant to be a booking page</h1>")
-    return render(request, 'bookings.html', {})
+    my_context = {
+        "my_text":  "This is about us",
+        "my_number": 123,
+        "my_list": [123, 424, 12321]
+    }
+    return render(request, 'bookings.html', my_context)

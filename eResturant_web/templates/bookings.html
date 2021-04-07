@@ -2,6 +2,14 @@
 
 {% block content %}
     <h1>Bookings</h1>
-    {{ request.user.is_authenticated }}
+
+    <ul>
+        {% for my_sub_item in my_list %}
+
+        <li>{{my_sub_item}}</li>
+        
+        {% endfor %}
+    </ul>
+
 
 {% endblock content %}
