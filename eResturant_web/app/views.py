@@ -6,11 +6,14 @@ from django.contrib import messages
 from django.utils.timezone import datetime
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import NewUserForm, ProfileForm
+from django.contrib.auth import login, logout
 
 
 # Create your views here.
 def home(request):
-    return HttpResponse("Hello, Django!")
+    current_user = request.user
+
+    return render(request, 'app/home.html')
 
 
 def hello_there(request, name):
@@ -33,10 +36,35 @@ def register(request):
             p_form = p_form.save(commit=False)
             p_form.user = user
             p_form.save()
+            login(request, user)
             messages.success(
-                request, f'Registration complete! You may log in!')
+                request, f'Registration complete!')
             return redirect('home')
     else:
         u_form = NewUserForm(request.POST)
         p_form = ProfileForm(request.POST)
     return render(request, 'app/register.html', {'u_form': u_form, 'p_form': p_form})
+
+
+def login_view(request):
+    if request.method == "POST":
+        form = AuthenticationForm(data=request.POST)
+
+        if form.is_valid():
+
+            user = form.get_user()
+            login(request, user)
+            return redirect('/')
+
+    else:
+        form = AuthenticationForm()
+
+    return render(request, 'app/login.html', {'form': form})
+
+# logout view
+
+
+def logout_view(request):
+    if request.method == "POST":
+        logout(request)
+        return redirect('/')
