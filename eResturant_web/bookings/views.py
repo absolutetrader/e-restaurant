@@ -7,7 +7,7 @@ from .forms import BookingForm, editBookingForm
 
 
 def bookings_view(request, *args, **kwargs):
-    obj = Booking.objects.get(id=5)
+    obj = Booking.objects.all()
     my_context = {
         'object': obj
     }
@@ -16,7 +16,7 @@ def bookings_view(request, *args, **kwargs):
 
 def booking_create_view(request, *args, **kwargs):
     form = BookingForm(request.POST or None)
-    if form.is_valid():
+    if form.is_valid():      
         form.save()
         form = BookingForm()
     context = {
