@@ -2,3 +2,126 @@
   font-weight: 600;
   color: blue;
 }
+
+.header {
+  padding: 30px;
+  text-align: center;
+  /*background: MediumSeaGreen;*/
+  background: #db4141;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: white;
+  font-size: 30px;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  /*font-family: arial;*/
+  float: none;
+  font-family: "Anonymous Pro", monospace;
+}
+/*font-family: "Anonymous Pro",monospace;
+    font-weight: 700;
+    font-style: normal;*/
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #666;
+  color: white;
+}
+
+/* Active/current link */
+.navbar a.active {
+  --background-color: #666;
+  -color: white;
+}
+
+.logout-link .button {
+  padding: 10px 20px;
+  float: right;
+  font-family: "Anonymous Pro", monospace;
+  transition: all 0.3s;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+
+.button {
+  background-color: #333;
+  border: none;
+  color: white;
+  text-align: center;
+  font-family: arial;
+  /*outline: 1px red solid;*/
+  bottom: 0;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+}
+
+#register ul {
+  font-size: 15px;
+  font-style: italic;
+  color: silver;
+}
+
+#register label {
+  display: block;
+  width: 100%;
+}
+
+#register {
+  margin: auto;
+  width: 600px;
+  padding: 30px;
+  border: 2px solid #db4141;
+  border-radius: 20px;
+}
+
+#login {
+  text-align: left;
+  padding: 32px;
+  border: 2px solid black;
+}
+
+#login {
+  margin: auto;
+  width: 600px;
+  padding: 30px;
+  border: 2px solid #20b2aa;
+  border-radius: 20px;
+}
+
+#login ul {
+  font-size: 15px;
+  font-style: italic;
+  color: silver;
+}
+
+#login label {
+  display: block;
+  width: 100%;
+}
+
+#login {
+  width: 80%;
+}

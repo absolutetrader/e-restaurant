@@ -1,0 +1,35 @@
+{% load static %}
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" id="ample-site-css" href="{% static 'app/site.css' %}" type="text/css" media="all">
+  <div class="header">
+
+    <p>Le Bistrot d'Andre</p>
+
+  </div>
+</head>
+
+<div id="bar">
+  <div class="navbar">
+  
+  {% if user.is_authenticated %}
+
+    <form class="logout-link" action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" name="button" class="button">Logout</button>
+    </form>
+
+  {% else %}
+  <div class="menu">
+    <a href="{% url 'login' %}" class="active">Login</a>
+  <a href="{% url 'register' %}" class="active">Register</a>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+
+{% block content %}
+
+{% endblock %}
