@@ -29,8 +29,8 @@ def hello_there(request, name):
 
 def register(request):
     if request.method == "POST":
-        u_form = NewUserForm(request.POST)
-        p_form = ProfileForm(request.POST)
+        u_form = NewUserForm(request.POST or None)
+        p_form = ProfileForm(request.POST or None)
         if u_form.is_valid() and p_form.is_valid():
             user = u_form.save()
             p_form = p_form.save(commit=False)

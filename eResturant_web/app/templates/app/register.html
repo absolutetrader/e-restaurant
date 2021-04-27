@@ -1,8 +1,9 @@
-
+{% extends "app/base.html" %}
 {% block content %}
 
-<h2>Sign up to Le Bistrot d'Andre to book tables, order food and receive exclusive rewards</h2>
-<div id="signIn">
+<h2></h2>
+<div id="register">
+  <h2>Sign up to Le Bistrot d'Andre to book tables, order food and receive exclusive rewards</h2>
 <form method="post">
   {% csrf_token %}
   {{ u_form.as_p }}
