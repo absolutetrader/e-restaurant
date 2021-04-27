@@ -1,7 +1,6 @@
 from django import forms
 from .models import Booking
 from django.forms import ValidationError
-from tempus_dominus.widgets import DatePicker, TimePicker, DateTimePicker
 
 
 class BookingForm(forms.ModelForm):
@@ -19,22 +18,24 @@ class BookingForm(forms.ModelForm):
 
     def clean_guests(self):
         guests = self.cleaned_data['guests']
-
-        if guests < 1:
-            raise ValidationError('Booking must be for 1 or more people')
+        max_guests = self.cleaned_data.get('table').maxCapacity
+        if guests is not None:
+            if guests > max_guests:
+                raise ValidationError('Booking has exceeded the capacity of the table')   
+            if guests < 1:
+                raise ValidationError('Booking must be for 1 or more people')
         return guests
     
     def clean(self):
         super(BookingForm, self).clean()  
-        guests = self.cleaned_data.get('guests')
-        max_guests = self.cleaned_data.get('table').maxCapacity
+        #if len(Booking.objects.all()) > 0:
+            #raise ValidationError('You already have an active booking')
+        for bookings in Booking.objects.filter(table = self.cleaned_data['table']):
+            if(self.cleaned_data['bookingStartDateTime'] >= bookings.bookingStartDateTime and self.cleaned_data['bookingStartDateTime'] <= bookings.bookingEndDateTime):
+                raise ValidationError("This table has already been booked for this time")
 
-        if guests > max_guests:
-            raise ValidationError('Booking has exceeded the capacity of the table')
-    
-    
 
-        
+
 
 class editBookingForm(forms.ModelForm):
     class Meta:
