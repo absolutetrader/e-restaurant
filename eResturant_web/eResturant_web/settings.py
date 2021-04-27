@@ -40,7 +40,6 @@ INSTALLED_APPS = [
 
     # My own apps
     'app',
-    'bookings'
 ]
 
 MIDDLEWARE = [
