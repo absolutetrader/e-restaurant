@@ -12,3 +12,15 @@ class userProfile(models.Model):
     fName = models.CharField(max_length=50, name="First Name")
     lName = models.CharField(max_length=50, name="Last Name")
     isStaff = models.BooleanField(default=False)
+
+class Menu(forms.ModelForm):
+    
+    MENU = (
+        (
+            '0', 'Alfredo Chicken Pasta',
+            '1', 'Spaghetti Bolognese',
+            '2', 'Chicken Pizza',
+            '3', 'Vegetarian Pizza',
+            '4', 'Coke'
+        )
+    )
