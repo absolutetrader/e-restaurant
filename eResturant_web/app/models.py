@@ -13,7 +13,8 @@ class userProfile(models.Model):
     lName = models.CharField(max_length=50, name="Last Name")
     isStaff = models.BooleanField(default=False)
 
-class Menu(forms.ModelForm):
+
+"""class Menu(forms.ModelForm):
     
     MENU = (
         (
@@ -23,4 +24,4 @@ class Menu(forms.ModelForm):
             '3', 'Vegetarian Pizza',
             '4', 'Coke'
         )
-    )
+    )"""
