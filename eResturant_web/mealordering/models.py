@@ -27,5 +27,5 @@ def calculateCost(userID):
 
 class MealOrder(models.Model):
     table = models.ForeignKey(
-        'bookings.Table', on_delete=models.CASCADE, default="")
-    order = models.ForeignKey(Menu, on_delete=models.CASCADE, default="")
+        'bookings.Table', on_delete=models.CASCADE, default="Select Table")
+    order = models.ForeignKey(Menu, on_delete=models.CASCADE, default="Select Menu Order")

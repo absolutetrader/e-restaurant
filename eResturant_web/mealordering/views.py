@@ -7,6 +7,9 @@ def mealOrder_view(request):
     return render(request, 'home.html', context)
 
 def make_order_view(request):
-    form = MealOrderForm()
+
+    form_class = MealOrderForm
+    form = form_class(request.POST or None) 
+  
     context = {'form':form}
     return render(request, 'order.html', context)
