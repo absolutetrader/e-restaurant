@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from app.models import Booking
-from app.forms import BookingForm, editBookingForm
+from app.models.booking_model import Booking
+from app.forms.booking_forms import BookingForm, editBookingForm
 
 # Create your views here.
 
@@ -11,7 +11,7 @@ def bookings_view(request, *args, **kwargs):
     my_context = {
         'object': obj
     }
-    return render(request, 'bookings.html', my_context)
+    return render(request, 'app/bookings.html', my_context)
 
 
 def booking_create_view(request, *args, **kwargs):
@@ -22,7 +22,7 @@ def booking_create_view(request, *args, **kwargs):
     context = {
         'form': form
     }
-    return render(request, 'booking_create.html', context)
+    return render(request, 'app/bookings_create.html', context)
 
 
 def booking_edit_view(request, *args, **kwargs):
@@ -33,4 +33,4 @@ def booking_edit_view(request, *args, **kwargs):
     context = {
         'form': form
     }
-    return render(request, 'bookings_edit.html', context)
+    return render(request, 'app/bookings_edit.html', context)
