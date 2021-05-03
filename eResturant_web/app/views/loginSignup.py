@@ -1,11 +1,12 @@
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import UserCreationForm
+from app.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.utils.timezone import datetime
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import NewUserForm, ProfileForm
+from app.forms import NewUserForm, ProfileForm
 from django.contrib.auth import login, logout
 
 

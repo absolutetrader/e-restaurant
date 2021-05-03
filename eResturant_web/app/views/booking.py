@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Booking
-from .forms import BookingForm, editBookingForm
+from app.models import Booking
+from app.forms import BookingForm, editBookingForm
 
 # Create your views here.
 
@@ -16,7 +16,7 @@ def bookings_view(request, *args, **kwargs):
 
 def booking_create_view(request, *args, **kwargs):
     form = BookingForm(request.POST or None)
-    if form.is_valid():      
+    if form.is_valid():
         form.save()
         form = BookingForm()
     context = {
