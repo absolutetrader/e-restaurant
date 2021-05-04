@@ -1,25 +1,10 @@
 from django import forms
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
 from django.conf import settings
-from datetime import datetime, timedelta
-from .models import userProfile, Booking, MealOrder, Table
+from app.models.booking_model import Table, Booking
 from django.forms import ValidationError
+from datetime import datetime, timedelta
 
 
-class NewUserForm(UserCreationForm):
-    email = forms.EmailField()
-
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'password1', 'password2']
-
-
-class ProfileForm(forms.ModelForm):
-
-    class Meta:
-        model = userProfile
-        fields = ['First Name', 'Last Name']
 
 
 class InitialBookingForm(forms.ModelForm):
@@ -64,10 +49,3 @@ class editBookingForm(forms.ModelForm):
             'bookingStartDateTime',
             'bookingEndDateTime'
         ]
-
-
-class MealOrderForm(forms.ModelForm):
-    class Meta:
-        model = MealOrder
-        fields = '__all__'
-

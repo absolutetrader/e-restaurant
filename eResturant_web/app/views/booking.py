@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from app.models import Booking, userProfile, Table
-from app.forms import InitialBookingForm, editBookingForm, FinalBookingForm
+from app.models.booking_model import Booking, Table
+from app.forms.booking_forms import InitialBookingForm, editBookingForm
 from django.shortcuts import redirect
+
 
 # Create your views here.
 
@@ -13,7 +14,6 @@ def bookings_view(request, *args, **kwargs):
         'object': obj
     }
     return render(request, 'app/bookings.html', my_context)
-
 
 def booking_create_view(request):
     
@@ -40,6 +40,7 @@ def booking_edit_view(request, *args, **kwargs):
         'form': form
     }
     return render(request, 'app/bookings_edit.html', context)
+
 
 
 
