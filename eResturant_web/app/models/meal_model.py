@@ -6,7 +6,6 @@ from django.core.exceptions import ValidationError
 from django.db.models.deletion import CASCADE
 from .booking_model import Table
 
-
 class Menu(models.Model):
     item_choices = (
         ("E", "Entree"),
