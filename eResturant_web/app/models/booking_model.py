@@ -14,7 +14,7 @@ class Table(models.Model):
 
 class Booking(models.Model):
     user = models.ForeignKey(
-        userProfile, on_delete=models.CASCADE, default=1)
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
     table = models.ForeignKey(Table, on_delete=models.CASCADE, default="")
     bookingStartDateTime = models.DateTimeField(default=datetime.now)
     bookingEndDateTime = models.DateTimeField(default=datetime.now)

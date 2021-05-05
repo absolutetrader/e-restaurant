@@ -4,7 +4,7 @@ from django.conf import settings
 from datetime import datetime, timedelta
 from django.core.exceptions import ValidationError
 from django.db.models.deletion import CASCADE
-from .booking_model import Table
+from .booking_model import Booking
 
 class Menu(models.Model):
     item_choices = (
@@ -27,7 +27,7 @@ def calculateCost(userID):
 
 
 class MealOrder(models.Model):
-    table = models.ForeignKey(
-        Table, on_delete=models.CASCADE, default=0)
+    booking = models.ForeignKey(
+        Booking, on_delete=models.CASCADE, default=0)
     order = models.ForeignKey(
         Menu, on_delete=models.CASCADE, default=0)

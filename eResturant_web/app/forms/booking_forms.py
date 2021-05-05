@@ -32,7 +32,8 @@ class InitialBookingForm(forms.ModelForm):
     
 
 class FinalBookingForm(forms.Form):  
-    table = forms.RadioSelect(choices = Table.objects.all())
+    table = 0
+    #table = forms.RadioSelect(choices = Table.objects.all())
     #def __init__(self, dynamic_field_names, *args, **kwargs):
         #super(FinalBookingForm, self).__init__(*args, **kwargs)
         #for field_name in dynamic_field_names:
