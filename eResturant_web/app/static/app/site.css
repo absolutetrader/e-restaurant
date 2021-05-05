@@ -125,3 +125,22 @@
 #login {
   width: 80%;
 }
+
+#booking ul {
+  font-size: 15px;
+  font-style: italic;
+  color: silver;
+}
+
+#booking label {
+  display: block;
+  width: 100%;
+}
+
+#booking {
+  margin: auto;
+  width: 600px;
+  padding: 30px;
+  border: 2px solid #db4141;
+  border-radius: 20px;
+}
