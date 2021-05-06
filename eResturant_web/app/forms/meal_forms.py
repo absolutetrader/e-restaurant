@@ -11,7 +11,5 @@ class MealOrderForm(forms.ModelForm):
     
     class Meta:
         model = MealOrder
-        fields = [
-            'booking',
-            'order'
-        ]
+        fields = '__all__'
+        exclude = ('booking',)
