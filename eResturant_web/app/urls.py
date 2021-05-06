@@ -17,7 +17,7 @@ urlpatterns = [
     path('create', booking.booking_create_view, name='bookings/create'),
     path('edit', booking.booking_edit_view, name='bookings/edit'),
     path('meal', mealOrdering.meal_order_view, name='mealOrder'),
-    #path('order', mealOrdering.make_order_view, name='mealOrder/order')
+    path('order', mealOrdering.make_order_view, name='mealOrder/order')
 
 ]
 
