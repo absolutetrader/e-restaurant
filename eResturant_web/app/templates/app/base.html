@@ -19,7 +19,13 @@
       {% csrf_token %}
       <button type="submit" name="button" class="button">Logout</button>
     </form>
-
+    <div class="menu">
+      <a href="{% url 'home' %}" class="active">Home</a>
+      <a href="{% url 'bookings/create' %}" class="active">Book</a>
+    </div>
+      
+      
+    
   {% else %}
   <div class="menu">
     <a href="{% url 'login' %}" class="active">Login</a>
