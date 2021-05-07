@@ -41,12 +41,8 @@ class InitialBookingForm(forms.ModelForm):
     
 
 class FinalBookingForm(forms.Form):  
-    def __init__(self, *args, **kwargs):
-        guests = kwargs.pop('guests', None)
-        booking_start_date_time = kwargs.pop('booking_start_date_time', None)
-        booking_end_date_time = kwargs.pop('booking_end_date_time', None)
-        super(FinalBookingForm, self).__init__(*args, **kwargs)
-        table = forms.ModelChoiceField(queryset = get_available_tables(booking_start_date_time, booking_end_date_time, guests))
+    
+    table = forms.ModelChoiceField(queryset = Table.objects.all())
 
 
 class editBookingForm(forms.ModelForm):

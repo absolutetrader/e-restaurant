@@ -8,6 +8,7 @@ import json
 from json import JSONEncoder
 
 
+
 # Create your views here.
 
 
@@ -26,24 +27,19 @@ def booking_create_view(request):
         f = initial_form.save(commit=False)
         f.user = current_user
         f.save()
-        current_guests = initial_form.cleaned_data['guests']
-        current_start_datetime = initial_form.cleaned_data['bookingStartDateTime']
-        current_end_datetime = initial_form.cleaned_data['bookingEndDateTime']
-        request.session['current_guests'] = current_guests
-        request.session['current_start_datetime'] = json.dumps(current_start_datetime, cls=DateTimeEncoder)
-        request.session['current_end_datetime'] = json.dumps(current_end_datetime, cls= DateTimeEncoder)
         return redirect("bookings/create/table")   
             
             
       
     return render(request, 'app/bookings_create.html', { 'initial_form' : initial_form})
 
+def booking_create_success_view(request):
+    return render(request, 'app/bookings_create_successful.html')
+
+
+
 def booking_create_table_view(request):
-    
-    table_form = FinalBookingForm(request.POST, guests = request.session.get('current_guests'), booking_start_date_time = json.loads(request.session.get('current_start_datetime'), object_hook=DecodeDateTime), booking_end_date_time = json.loads(request.session.get('current_end_datetime'), object_hook=DecodeDateTime))
-    if request.method == "POST":
-        table_form = FinalBookingForm(request.POST, guests = request.session.get('current_guests'), booking_start_date_time = json.loads(request.session.get('current_start_datetime'), object_hook=DecodeDateTime), booking_end_date_time = json.loads(request.session.get('current_end_datetime'), object_hook=DecodeDateTime))
-        
+    table_form = FinalBookingForm(request.POST or None)    
 
     return render(request, 'app/bookings_create_table.html', {'table_form' : table_form})
 
