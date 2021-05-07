@@ -1,8 +1,16 @@
 {% extends 'app/base.html' %}
-
 {% block content %}
+<h2></h2>
+<div id = 'register'>
+    <h2>Add meal orders to your booking:</h2>
+    <p> Options: <br>
+        Entree: "E" <br>
+        Main: "M" <br>
+        Dessert : "D" <br>
+        Extra : "+" <br> </p>
     <form method='POST'> {% csrf_token %}
         {{ form.as_p }}
-        <input type='submit' value='Save' />
+        <input type='submit' value='Add order to booking' />
     </form>
+</div>
 {% endblock content %}

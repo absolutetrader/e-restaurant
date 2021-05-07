@@ -17,6 +17,9 @@ class Menu(models.Model):
     price = models.IntegerField()
     category = models.CharField(max_length=1, choices=item_choices)
 
+    def __str__(self):
+        return self.name + " " + self.category
+
 
 def calculateCost(userID):
     cost = 0
@@ -27,7 +30,7 @@ def calculateCost(userID):
 
 
 class MealOrder(models.Model):
-    booking = models.ForeignKey(
-        Booking, on_delete=models.CASCADE, default=0)
-    order = models.ForeignKey(
-        Menu, on_delete=models.CASCADE, default=0)
+    booking = models.ForeignKey(Booking, on_delete=models.CASCADE, default=0)
+    order = models.ForeignKey(Menu, on_delete=models.CASCADE, default=0)
+
+
