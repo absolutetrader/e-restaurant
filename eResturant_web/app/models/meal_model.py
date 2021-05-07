@@ -18,7 +18,7 @@ class Menu(models.Model):
     category = models.CharField(max_length=1, choices=item_choices)
 
     def __str__(self):
-        return self.name + " " + self.category
+        return self.name + " (" + self.category + ") $" + str(self.price)
 
 
 def calculateCost(userID):

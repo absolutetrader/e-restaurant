@@ -1,5 +1,12 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-   <p>Welcome to meal ordering</p>
+<h2></h2>
+<div id = 'register'>
+   <h1>Your current meal order:</h1>
+   {% for order in list %} 
+         <p>{{order}}</p>
+   {% endfor %}
+</div>
 {% endblock content %}
+

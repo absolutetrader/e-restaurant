@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from app.models import MealOrder, Booking
+from app.models import MealOrder, Booking, Menu
 from django import forms
 from app.forms.meal_forms import MealOrderForm
 
@@ -8,8 +8,14 @@ from app.forms.meal_forms import MealOrderForm
 
 
 def meal_order_view(request):
-    context = {}
-    return render(request, 'app/meal_order.html', context)
+    current_booking = Booking.objects.get(user = request.user)
+    MealOrders = MealOrder.objects.filter(booking = current_booking)
+    list = []
+    
+    for orders in MealOrders:
+        list.append(orders.order.name + "(" + orders.order.category + ") : $" + str(orders.order.price))
+
+    return render(request, 'app/meal_order.html', {'list' : list})
 
 
 def make_order_view(request):   
