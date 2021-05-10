@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 @login_required
-def bookings_view(request, *args, **kwargs):
+def bookings_view(request):
     try:
         booking = Booking.objects.get(user = request.user)
     except Booking.DoesNotExist:
@@ -71,6 +71,9 @@ def booking_edit_view(request, *args, **kwargs):
 
 @login_required
 def booking_delete_view(request, *args, **kwargs):
-    booking = Booking.objects.get(user = request.user)
-    booking.delete()
-    return redirect("bookings/create")
+    try:
+        booking = Booking.objects.get(user = request.user)
+        booking.delete()
+        return redirect("bookings/create")
+    except Booking.DoesNotExist:
+        return redirect("bookings/create")
