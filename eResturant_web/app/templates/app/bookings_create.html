@@ -1,7 +1,7 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-{% if user.is_authenticated %}
+
 <div id="booking">
     <h2>Place a Booking</h2>
     <form method='POST'> {% csrf_token %}
@@ -11,10 +11,5 @@
     </form>
 
 </div>
-{% else %}
-<div id="booking">
-<h2>Place a Booking</h2>
-<p>You must be logged in before you can place a booking</p>
-</div>
-{% endif %}
+
 {% endblock content %}

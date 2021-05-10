@@ -143,4 +143,10 @@
   padding: 30px;
   border: 2px solid #db4141;
   border-radius: 20px;
+  text-align: center;
+}
+
+#booking h1{
+  float: center;
+  color:#20b2aa;
 }

@@ -4,8 +4,8 @@
     <div id="booking">
         <h2>Edit your Booking</h2>
         <p>Are you sure you would like to edit your booking?</p>
-        <form method='POST'>{% csrf_token %}
-            <input type='submit' value='Confirm' />
-        </form>
+        <a href="delete">
+            <button>Confirm</button>
+        </a> 
     </div>
 {% endblock content %}

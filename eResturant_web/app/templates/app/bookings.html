@@ -1,13 +1,23 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-    <div id="booking">
-        <h1>Your booking for {{user.user}} is on {{ booking.bookingStartDateTime.date }}</h1>
-        <p>Your booking starts at {{booking.bookingStartDateTime.time}} and finishes on {{booking.bookingEndDateTime.time}}</p>
-        <p>Number of Guests: {{booking.guests}}</p>  
-        <p>Table: {{ booking.table.id }}</p>
-    </div>
-
-
-
+    {% if booking is none %}
+    <h1></h1>
+        <div id="booking">
+            <h1>You currently have no active booking</h1>
+            <a href="create">
+                <Button>Place Booking</Button>
+            </a>
+        </div>
+    {% else %}
+        <div id="booking">
+            <h1>Your booking for {{user.user}} is on {{ booking.bookingStartDateTime.date }}</h1>
+            <p>Your booking starts at {{booking.bookingStartDateTime.time}} and finishes on {{booking.bookingEndDateTime.time}}</p>
+            <p>Number of Guests: {{booking.guests}}</p>  
+            <p>Table: {{ booking.table.id }}</p>
+            <a href="edit">
+                <button>Edit Booking</button>
+            </a>
+        </div>
+    {% endif %}
 {% endblock content %}

@@ -5,17 +5,19 @@ from app.models.user_model import userProfile
 from app.forms.booking_forms import InitialBookingForm, editBookingForm, FinalBookingForm
 import datetime
 from django.shortcuts import redirect
-import json
-from json import JSONEncoder
 from django.forms import ValidationError
+from django.contrib.auth.decorators import login_required
 
 
 
 # Create your views here.
 
-
+@login_required
 def bookings_view(request, *args, **kwargs):
-    booking = Booking.objects.get(user = request.user)
+    try:
+        booking = Booking.objects.get(user = request.user)
+    except Booking.DoesNotExist:
+        booking = None
     user = userProfile.objects.get(user = request.user)
     my_context = {
         'booking': booking,
@@ -23,6 +25,7 @@ def bookings_view(request, *args, **kwargs):
     }
     return render(request, 'app/bookings.html', my_context)
 
+@login_required
 def booking_create_view(request):
     
     initial_form = InitialBookingForm(request.POST or None)
@@ -40,10 +43,11 @@ def booking_create_view(request):
 
     return render(request, 'app/bookings_create.html', { 'initial_form' : initial_form})
 
-
+@login_required
 def booking_existing_view(request):
     return render(request, 'app/bookings_existing.html')
 
+@login_required
 def booking_create_table_view(request):
     table_form = FinalBookingForm(request.POST or None)    
     if table_form.is_valid():
@@ -54,6 +58,7 @@ def booking_create_table_view(request):
         return redirect("bookings")
     return render(request, 'app/bookings_create_table.html', {'table_form' : table_form})
 
+@login_required
 def booking_edit_view(request, *args, **kwargs):
     form = editBookingForm(request.POST or None)
     if form.is_valid():
@@ -64,14 +69,8 @@ def booking_edit_view(request, *args, **kwargs):
     }
     return render(request, 'app/bookings_edit.html', context)
 
-
-
-
-class DateTimeEncoder(JSONEncoder):
-    def default (self, obj):
-        if isinstance(obj, (datetime.date, datetime.datetime)):
-            return obj.isoformat()
-
-def DecodeDateTime(date):
-    date = datetime.fromisoformat(date)
-    return date
+@login_required
+def booking_delete_view(request, *args, **kwargs):
+    booking = Booking.objects.get(user = request.user)
+    booking.delete()
+    return redirect("bookings/create")
