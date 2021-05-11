@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from app.models.booking_model import Booking, Table
 from app.models.user_model import userProfile
 from app.forms.booking_forms import InitialBookingForm, editBookingForm, FinalBookingForm
-import datetime
+from datetime import datetime, timedelta
+from django.utils import timezone
 from django.shortcuts import redirect
 from django.forms import ValidationError
 from django.contrib.auth.decorators import login_required
@@ -73,7 +74,14 @@ def booking_edit_view(request, *args, **kwargs):
 def booking_delete_view(request, *args, **kwargs):
     try:
         booking = Booking.objects.get(user = request.user)
-        booking.delete()
-        return redirect("bookings/create")
+        date = booking.bookingStartDateTime
+        if date + timedelta(days = 1) < timezone.now():
+            booking.delete()
+            return redirect("bookings/create")
+        else:
+            return redirect("edit/fail")
     except Booking.DoesNotExist:
         return redirect("bookings/create")
+@login_required
+def booking_edit_fail_view(request):
+    return render(request, 'app/bookings_edit_fail.html')

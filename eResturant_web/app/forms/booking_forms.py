@@ -3,6 +3,7 @@ from django.conf import settings
 from app.models.booking_model import Table, Booking
 from django.forms import ValidationError
 from datetime import datetime, timedelta
+from django.utils import timezone
 
 def get_available_tables(booking_start_date_time, booking_end_date_time, guests):
     l_bound_time = booking_start_date_time
@@ -71,6 +72,15 @@ class InitialBookingForm(forms.ModelForm):
             if obj.user == data:
                 raise ValidationError("You already have an active booking")
         return data
+    def clean_bookingStartDateTime(self):
+        data = self.cleaned_data['bookingStartDateTime']
+        date = data.date
+        now = timezone.now()
+        if data < now:
+            raise ValidationError("Bookings cannot be in the past")
+        return data
+
+
     
 
 class FinalBookingForm(forms.Form):  
