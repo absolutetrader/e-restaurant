@@ -2,7 +2,7 @@
 {% block content %}
 <h2></h2>
 <div id = 'register'>
-    <h1>Add meal orders to your booking:</h1>
+    <h1 style="text-align: center;">Add meal orders to your booking:</h1>
     <p> Options: <br>
         Entree: "E" <br>
         Main: "M" <br>
@@ -11,6 +11,10 @@
     <form method='POST'> {% csrf_token %}
         {{ form.as_p }}
         <input type='submit' value='Add order to booking' />
+        <p style="text-align: center;">
+            <a class="submit" href="/meal">View current orders</a>
+        </p>
     </form>
+    
 </div>
 {% endblock content %}

@@ -13,3 +13,6 @@ class MealOrderForm(forms.ModelForm):
         model = MealOrder
         fields = '__all__'
         exclude = ('booking',)
+
+
+        
