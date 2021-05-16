@@ -8,20 +8,13 @@ from .booking_model import Booking
 
 class Menu(models.Model):
     item_choices = (
-        ("E", "Entree"),
-        ("M", "Main"),
-        ("D", "Dessert"),
-        ("+", "Extra(s)")
-    )
-    menu_types = (
         ("B", "Breakfast"),
         ("L", "Lunch"),
-        ("D", "Dinner")
+        ("D", "Dinner"),
     )
     name = models.CharField(max_length=50)
     price = models.IntegerField()
     category = models.CharField(max_length=1, choices=item_choices)
-    menutype = models.CharField(max_length=50, choices=menu_types, default="L")
 
     def __str__(self):
         return self.name + " (" + self.category + ") $" + str(self.price)

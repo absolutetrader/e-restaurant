@@ -4,10 +4,9 @@
 <div id = 'register'>
     <h1 style="text-align: center;">Add meal orders to your booking:</h1>
     <p> Options: <br>
-        Entree: "E" <br>
-        Main: "M" <br>
-        Dessert : "D" <br>
-        Extra : "+" <br> </p>
+        Breakfast: "B" <br>
+        Lunch: "L" <br>
+        Dinner : "D" <br> </p>
     <form method='POST'> {% csrf_token %}
         {{ form.as_p }}
         <input type='submit' value='Add order to booking' />
