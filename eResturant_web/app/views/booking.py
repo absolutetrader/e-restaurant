@@ -19,7 +19,7 @@ def bookings_view(request):
         booking = Booking.objects.get(user = request.user)
     except Booking.DoesNotExist:
         booking = None
-    user = userProfile.objects.get(user = request.user)
+    user = request.user
     my_context = {
         'booking': booking,
         'user' : user
