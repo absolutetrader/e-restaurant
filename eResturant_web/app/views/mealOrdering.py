@@ -3,10 +3,11 @@ from django.http import HttpResponse
 from app.models import MealOrder, Booking, Menu
 from django import forms
 from app.forms.meal_forms import MealOrderForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-
+@login_required
 def meal_order_view(request):
     if Booking.objects.filter(user = request.user).count() == 0:
         return redirect('/create')
@@ -19,7 +20,7 @@ def meal_order_view(request):
         list.append(orders.order.name + "(" + orders.order.category + ") : $" + str(orders.order.price))
 
     return render(request, 'app/meal_order.html', {'list' : list})
-
+@login_required
 def edit_order_view(request):
     template = 'app/meal_order_edit.html'
     context = {}
@@ -35,7 +36,7 @@ def edit_order_view(request):
 
     return render(request, template, context)
 
-
+@login_required
 def make_order_view(request):   
 
     form = MealOrderForm(request.POST or None)

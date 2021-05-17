@@ -2,7 +2,6 @@
 
 {% block content %}
 <h1></h1>
-<div id = 'register'>
     <div id="booking">
         <h1 style="text-align: center;">Place a Booking</h1>
         <form method='POST'> {% csrf_token %}
@@ -11,6 +10,5 @@
             <input type='submit' value='Find Available Tables' />
         </form>
     </div>
-</div>  
 
 {% endblock content %}

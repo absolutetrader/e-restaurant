@@ -3,7 +3,6 @@
 {% block content %}
     <h1></h1>
     {% if booking is none %}
-    <div id = 'register'>
         <div id="booking">
             <h1>You currently have no active booking</h1>
             <p style="text-align: center;">
@@ -12,9 +11,7 @@
                 </a>
             </p>
         </div>
-    </div>
     {% else %}
-    <div id = 'register'>
         <div id="booking">
             <h1 style ='text-align: center;'>Your booking for {{user.user}} is on {{ booking.bookingStartDateTime.date }}</h1>
             <p>Your booking starts at <b>{{booking.bookingStartDateTime.time}}</b> and finishes on <b>{{booking.bookingEndDateTime.time}}</b> on <b>{{booking.bookingStartDateTime.date}}</b></p>
@@ -24,6 +21,5 @@
                     <button>Edit Booking</button>
                 </a>
         </div>
-    </div>
     {% endif %}
 {% endblock content %}
