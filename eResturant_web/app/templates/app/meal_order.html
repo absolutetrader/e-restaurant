@@ -1,5 +1,22 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-   <p>Welcome to meal ordering</p>
+<h2></h2>
+<div id = 'register'>
+   {% if list %} 
+      <h1 style="text-align: center;">Your current meal orders:</h1>
+      {% for order in list %} 
+            <p>{{order}}</p>
+      {% endfor %}
+      <h3 style="text-align: center;">
+      <a class="submit" href="/editorder">Clear Meal Orders</a>
+      </h3>
+   {% else %} 
+   <h2 style="text-align: center;">You do not have any meal orders, please add to it:</h2>
+   <h4 style = "text-align: center;">
+      <a class="submit" href="/order">Order Meals</a>
+   </h4>
+   {% endif %}
+</div>
 {% endblock content %}
+

@@ -84,12 +84,22 @@ class InitialBookingForm(forms.ModelForm):
     
 
 class FinalBookingForm(forms.Form):  
+<<<<<<< HEAD
     
     booking = Booking.objects.all().last()
     if(booking is None):
         table = forms.ModelChoiceField(queryset = Table.objects.all(), widget=forms.RadioSelect())
     else:
         table = forms.ModelChoiceField(queryset = get_available_tables(booking.bookingStartDateTime, booking.bookingEndDateTime, booking.guests), widget=forms.RadioSelect())
+=======
+    table = 0
+    #table = forms.RadioSelect(choices = Table.objects.all())
+    #def __init__(self, dynamic_field_names, *args, **kwargs):
+        #super(FinalBookingForm, self).__init__(*args, **kwargs)
+        #for field_name in dynamic_field_names:
+            #self.fields[field_name] = forms.ChoiceField()
+
+>>>>>>> origin/meal_ordering
 
 class editBookingForm(forms.ModelForm):
     class Meta:
