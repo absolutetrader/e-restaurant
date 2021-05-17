@@ -4,6 +4,8 @@ from app.models import MealOrder, Booking, Menu
 from django import forms
 from app.forms.meal_forms import MealOrderForm
 from django.contrib.auth.decorators import login_required
+from datetime import datetime, timedelta
+from django.utils import timezone
 
 # Create your views here.
 
@@ -30,9 +32,13 @@ def edit_order_view(request):
         current_booking = Booking.objects.get(user = request.user)
     else:
         return redirect('/create')
-
-    MealOrders = MealOrder.objects.filter(booking = current_booking)
-    MealOrders.delete()
+    
+    date = current_booking.bookingStartDateTime
+    if date - timezone.now() > timedelta(days = 1):
+        MealOrders = MealOrder.objects.filter(booking = current_booking)
+        MealOrders.delete()
+    else:
+        return redirect ("/meal")
 
     return render(request, template, context)
 
@@ -54,3 +60,4 @@ def make_order_view(request):
     context = {'form': form}
 
     return render(request, 'app/order.html', context)
+
