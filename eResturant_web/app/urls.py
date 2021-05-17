@@ -21,7 +21,7 @@ urlpatterns = [
     path('delete/edit', booking.booking_delete_edit_view, name='bookings/delete/edit'),
     path('delete', booking.booking_delete_view, name='bookings/delete'),
     path('meal', mealOrdering.meal_order_view, name='mealOrder'),
-    path('profile', loginSignup.profile_view, name='profile'),
+    #path('profile', loginSignup.profile_view, name='profile'),
     #path('order', mealOrdering.make_order_view, name='mealOrder/order')
 
 ]
