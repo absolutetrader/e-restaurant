@@ -8,13 +8,20 @@ from django.utils.timezone import datetime
 from django.contrib.auth.forms import AuthenticationForm
 from app.forms.user_forms import NewUserForm, ProfileForm
 from django.contrib.auth import login, logout
+from app.models.user_model import userProfile
 
 
 # Create your views here.
 def home(request):
     current_user = request.user
+    staff = False
+    if current_user.is_authenticated and current_user.is_superuser == False:
 
-    return render(request, 'app/home.html')
+        userC = userProfile.objects.get(user=current_user)
+        if userC.isStaff == True:
+            staff = True
+
+    return render(request, 'app/home.html', {'staff': staff})
 
 
 def hello_there(request, name):

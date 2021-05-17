@@ -1,6 +1,11 @@
 {% extends "app/base.html" %}
 {% block content %}
 <h1></h1>
+{% if user.is_authenticated %}
+{% if staff == True %}
+<a href="{% url 'invoice' %}">Get invoices</a>
+{% endif %}
+{% endif %}
 <div id="booking">
     <h1>Home</h1>
     <h3>Welcome to Le Bistrot d'Andre online booking and meal ordering service.</h3>
@@ -8,5 +13,6 @@
     
     <h2>We look forward to seeing you!</h2>
 </div>
+
 
 {% endblock %}

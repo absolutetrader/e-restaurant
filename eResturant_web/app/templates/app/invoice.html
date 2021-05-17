@@ -1,0 +1,28 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<h1> </h1>
+<div id="register">
+    
+    <form method='POST'> {% csrf_token %}
+        {{ form.as_p }}
+        <input type='submit' value='Get' />
+    </form>
+
+    {% if form.is_valid %}
+    {% for x in tableNo %}
+        <h2>The price of the meals from table: {{ x.table_id }} is ${{ price }}</h2>
+        {% if discount != 0 %}
+            <h3>Reward discount: {{ discount }}% off</h3>
+        {% endif %}
+        {% endfor %}
+        {% for x in order %}
+        
+            <p> {{ x.order.name }}: ${{ x.order.price }}</p>
+        {% endfor %}
+    <form method="GET"> {% csrf_token %}
+        <button type="submit" name="y" value='y'>Paid</button>    
+    </form>
+    {% endif %}
+</div>
+{% endblock content %}

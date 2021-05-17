@@ -14,3 +14,4 @@ class userProfile(models.Model):
     fName = models.CharField(max_length=50, name="First Name")
     lName = models.CharField(max_length=50, name="Last Name")
     isStaff = models.BooleanField(default=False)
+    visits = models.IntegerField(default=0)
