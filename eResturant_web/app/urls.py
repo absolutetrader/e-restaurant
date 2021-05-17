@@ -18,8 +18,10 @@ urlpatterns = [
     path('create/table', booking.booking_create_table_view, name='bookings/create/table'),
     path('edit', booking.booking_edit_view, name='bookings/edit'),
     path('edit/fail', booking.booking_edit_fail_view, name='bookings/edit/fail'),
+    path('delete/edit', booking.booking_delete_edit_view, name='bookings/delete/edit'),
     path('delete', booking.booking_delete_view, name='bookings/delete'),
     path('meal', mealOrdering.meal_order_view, name='mealOrder'),
+    path('profile', loginSignup.profile_view, name='profile'),
     #path('order', mealOrdering.make_order_view, name='mealOrder/order')
 
 ]

@@ -84,6 +84,7 @@ class InitialBookingForm(forms.ModelForm):
     
 
 class FinalBookingForm(forms.Form):  
+    
     booking = Booking.objects.all().last()
     if(booking is None):
         table = forms.ModelChoiceField(queryset = Table.objects.all(), widget=forms.RadioSelect())

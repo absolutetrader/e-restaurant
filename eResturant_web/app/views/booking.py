@@ -71,7 +71,7 @@ def booking_edit_view(request, *args, **kwargs):
     return render(request, 'app/bookings_edit.html', context)
 
 @login_required
-def booking_delete_view(request, *args, **kwargs):
+def booking_delete_edit_view(request, *args, **kwargs):
     try:
         booking = Booking.objects.get(user = request.user)
         date = booking.bookingStartDateTime
@@ -79,9 +79,19 @@ def booking_delete_view(request, *args, **kwargs):
             booking.delete()
             return redirect("bookings/create")
         else:
-            return redirect("edit/fail")
+            return redirect("bookings/edit/fail")
     except Booking.DoesNotExist:
         return redirect("bookings/create")
+
+@login_required
+def booking_delete_view(request):
+    try:
+        booking = Booking.objects.get(user = request.user)
+        booking.delete()
+        return redirect("bookings")
+    except Booking.DoesNotExist:
+        return redirect("bookings")
+
 @login_required
 def booking_edit_fail_view(request):
     return render(request, 'app/bookings_edit_fail.html')
