@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<h1></h1>
+<div id="booking">
+    <h2>Select an Available Table</h2>
+    <form method='POST'> {% csrf_token %}
+       
+        {{ table_form.as_p }}
+        <input type='submit' value='Save Booking' />
+    </form>
+
+</div>
+    
+{% endblock content %}

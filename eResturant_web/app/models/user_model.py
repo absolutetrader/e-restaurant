@@ -6,6 +6,8 @@ from django.core.exceptions import ValidationError
 from django.db.models.deletion import CASCADE
 # Create your models here.
 
+# login/signup
+
 
 class userProfile(models.Model):
     user = models.OneToOneField(User, on_delete=CASCADE)
