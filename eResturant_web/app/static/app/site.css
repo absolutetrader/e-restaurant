@@ -130,6 +130,9 @@
   font-size: 15px;
   font-style: italic;
   color: silver;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 #booking label {
@@ -148,4 +151,8 @@
 
 #booking h1{
   float: center;
+}
+
+#booking li{
+  list-style-type: none;
 }

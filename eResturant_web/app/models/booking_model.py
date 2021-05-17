@@ -9,6 +9,8 @@ from django.db.models.deletion import CASCADE
 
 class Table(models.Model):
     maxCapacity = models.IntegerField()
+    def __str__(self):
+        return u'{0}'.format(self.id)
 
 
 class Booking(models.Model):
