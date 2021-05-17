@@ -75,7 +75,7 @@ def booking_delete_edit_view(request, *args, **kwargs):
     try:
         booking = Booking.objects.get(user = request.user)
         date = booking.bookingStartDateTime
-        if date + timedelta(days = 1) < timezone.now():
+        if date - timezone.now() > timedelta(days = 1):
             booking.delete()
             return redirect("bookings/create")
         else:
