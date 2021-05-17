@@ -13,7 +13,7 @@ from app.models.rewards_model import Rewards
 
 def calculateCost(bookingID, userC):
     cost = 0
-    for price in MealOrder.objects.all().filter(Booking_id=bookingID):
+    for price in MealOrder.objects.all().filter(booking_id=bookingID):
         cost += price.order.price
 
     return cost - cost * discount(userC)
@@ -21,8 +21,9 @@ def calculateCost(bookingID, userC):
 
 def discount(userC):
     userP = userProfile.objects.get(user=userC)
-    reward = Rewards.objects.get(id=1)
-    if userP.visits > reward.condition and userP.visits % reward.condition == 0:
+    reward = Rewards.objects.first()
+    print (userP.visits)
+    if userP.visits % reward.condition == 0:
         return reward.discount
     else:
         return 0
@@ -35,13 +36,13 @@ def get_invoice(request, *args, **kwargs):
     if form.is_valid():
         saved = form.save(commit=False)
 
-        bookingID = form.cleaned_data['booking']
+        bookingID = form.cleaned_data['booking'] 
         tableNo = Booking.objects.all().filter(id=bookingID.id)
-        userC = request.user
+        userC = bookingID.user
         saved.price = calculateCost(bookingID, userC)
         price = saved.price
         discountU = discount(userC) * 100
-        order = MealOrder.objects.all().filter(Booking_id=bookingID)
+        order = MealOrder.objects.all().filter(booking_id=bookingID)
         paid = request.GET.get('y')
         saved.save()
 

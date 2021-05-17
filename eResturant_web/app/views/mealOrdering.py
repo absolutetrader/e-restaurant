@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from app.models import MealOrder, Booking, Menu
+from app.models import MealOrder, Booking, Menu, Rewards
 from django import forms
 from app.forms.meal_forms import MealOrderForm
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
 from django.utils import timezone
-from .invoice import calculateCost
+from .invoice import calculateCost, discount
 
 # Create your views here.
 
@@ -18,15 +18,16 @@ def meal_order_view(request):
 
     current_booking = Booking.objects.get(user=request.user)
     MealOrders = MealOrder.objects.filter(booking=current_booking)
-    price = calculateCost(current_booking, request.user)
 
     list = []
+    total = 0
     for orders in MealOrders:
         list.append(orders.order.name + "(" +
                     orders.order.category + ") : $" + str(orders.order.price))
+        total = total + orders.order.price
 
     return render(request, 'app/meal_order.html', {'list': list,
-                                                   'price': price})
+                                                   'total': total})
 
 
 @login_required
